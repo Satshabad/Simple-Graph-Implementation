@@ -39,7 +39,7 @@ public class Graph<V> {
 							new ArrayList<Edge<V>>());
 					vertexList.add(vertexConnectedToAddedVertex.getVertex());
 					correspondingConnectedList = adjacencyList
-							.get(vertexConnectedToAddedVertex);
+							.get(vertexConnectedToAddedVertex.getVertex());
 				}
 				// The weight from one vertex back to another in an undirected
 				// graph is equal
@@ -61,30 +61,31 @@ public class Graph<V> {
 			return true;
 		}
 
-		adjacencyList.get(source).add(end);
+		adjacencyList.get(source).add(new Edge<V>(end, weight));
 		return true;
 	}
 
-	public boolean addEdge(V vertexOne, V vertexTwo) {
+	public boolean addEdge(V vertexOne, V vertexTwo, int weight) {
 		if (directed) {
 			return false;
 		}
+		
 		if (!adjacencyList.containsKey(vertexOne)) {
-			ArrayList<V> tempList = new ArrayList<V>();
-			tempList.add(vertexTwo);
+			ArrayList<Edge<V>> tempList = new ArrayList<Edge<V>>();
+			tempList.add(new Edge<V>(vertexTwo, weight));
 			add(vertexOne, tempList);
 			return true;
 		}
 
 		if (!adjacencyList.containsKey(vertexTwo)) {
-			ArrayList<V> tempList = new ArrayList<V>();
-			tempList.add(vertexOne);
+			ArrayList<Edge<V>> tempList = new ArrayList<Edge<V>>();
+			tempList.add(new Edge<V>(vertexOne, weight));
 			add(vertexOne, tempList);
 			return true;
 		}
 
-		adjacencyList.get(vertexOne).add(vertexTwo);
-		adjacencyList.get(vertexTwo).add(vertexOne);
+		adjacencyList.get(vertexOne).add(new Edge<V>(vertexTwo, weight));
+		adjacencyList.get(vertexTwo).add(new Edge<V>(vertexOne, weight));
 		return true;
 	}
 

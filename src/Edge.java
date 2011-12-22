@@ -27,5 +27,10 @@ public class Edge<V> {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
+	
+	public String toString(){
+		
+		return "( "+ vertex + ", " + weight + " )";
+	}
 
 }

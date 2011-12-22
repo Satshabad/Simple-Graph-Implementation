@@ -6,16 +6,15 @@ public class Driver {
 
 	public static void main(String[] args) {
 
-		Graph<String> graph = new Graph<String>(true);
-		ArrayList<String> connected = new ArrayList<String>();
-		connected.add("B");
-		connected.add("C");
-		connected.add("D");
+		Graph<String> graph = new Graph<String>(false);
+		ArrayList<Edge<String>> connected = new ArrayList<Edge<String>>();
+		connected.add(new Edge<String>("B", 3));
+		connected.add(new Edge<String>("C", 6));
+		connected.add(new Edge<String>("D", 2));
 		graph.add("A", connected);
-		graph.addArc("D", "C");
-//		graph.addEdge("B", "C");
-//		graph.addEdge("z", "F");
-//		graph.addEdge("z", "C");
+		graph.addEdge("B", "C", 1);
+		graph.addEdge("z", "F", 71);
+		graph.addEdge("z", "C", 0);
 		System.out.println(graph.toString());
 		
 	}
